@@ -8,77 +8,74 @@
 
 ## 📌 Project Overview
 
-The **Train Consist Management App** is a console-based Java application that simulates how a railway system manages a train consist — a structured collection of bogies attached to an engine.
+The **Train Consist Management App** is a console-based Java application that simulates how railway systems manage train consists — collections of bogies attached to an engine.
 
-This project incrementally builds functionality using real-world railway scenarios.
+Each use case introduces a new data structure or concept aligned with real-world constraints.
 
 ---
 
-## 🎯 Use Case 2: Add Passenger Bogies (ArrayList Operations)
+## 🎯 Use Case 3: Track Unique Bogie IDs (Set – HashSet)
 
 ### ✅ Objective
 
-* Dynamically add passenger bogies
-* Remove bogies from the train
-* Check existence of bogies
-* Display updated train consist
+* Store bogie IDs uniquely
+* Prevent duplicate entries
+* Demonstrate automatic deduplication using Set
 
 ---
 
-## ⚠️ Problem in UC1
+## ⚠️ Problem in UC2
 
-* Train consist was empty
-* No way to:
+* Used `ArrayList`
+* Allowed duplicate bogie entries
+* Violates real-world railway rules (IDs must be unique)
 
-    * Add bogies
-    * Remove bogies
-    * Check contents
+Example issue:
 
-UC2 solves this using **ArrayList operations**
+```
+BG101, BG101 ❌
+```
 
 ---
 
 ## ⚙️ Features Implemented
 
-* Dynamic insertion of passenger bogies
-* Removal of specific bogies
-* Existence check using `contains()`
-* Maintains insertion order
-* Displays real-time updates of train consist
+* Unique bogie ID tracking using `HashSet`
+* Duplicate insertion attempts handled automatically
+* Fast lookup using hashing
+* Displays only unique bogies
 
 ---
 
 ## 🧠 Concepts Used
 
-### 🔹 ArrayList
+### 🔹 Set Interface
 
-* Dynamic resizing
-* Allows runtime insertion/deletion
+* Does NOT allow duplicates
+* No index-based access
+
+### 🔹 HashSet
+
+* Implements Set
+* Uses hashing for fast operations
+* Automatically removes duplicates
 
 ### 🔹 add()
 
 ```java
-passengerBogies.add("Sleeper");
-```
-
-### 🔹 remove()
-
-```java
-passengerBogies.remove("AC Chair");
+bogieIDs.add("BG101");
 ```
 
 ### 🔹 contains()
 
 ```java
-passengerBogies.contains("Sleeper");
+bogieIDs.contains("BG101");
 ```
 
-### 🔹 CRUD Operations
+### 🔹 Automatic Deduplication
 
-* Create → add()
-* Read → display list
-* Delete → remove()
-* Check → contains()
+* Duplicate values are ignored internally
+* No manual validation needed
 
 ---
 
@@ -103,46 +100,43 @@ java TrainConsistApp
 ```
 === Train Consist Management App ===
 
-Passenger Bogies after addition:
-[Sleeper, AC Chair, First Class]
+Bogie IDs after insertion (duplicates attempted):
+[BG101, BG102, BG103]
 
-After removing AC Chair:
-[Sleeper, First Class]
+Does BG101 exist? true
 
-Does Sleeper exist? true
+Final Unique Bogie IDs:
+[BG101, BG102, BG103]
 
-Final Passenger Bogie List:
-[Sleeper, First Class]
-
-System ready for further operations...
+System ensures no duplicate bogie IDs.
 ```
 
 ---
 
 ## 🚀 Key Learning Outcomes
 
-* Understand dynamic data structures
-* Perform CRUD operations using ArrayList
-* Learn how real-world systems manage collections
-* Visualize train bogie attachment/detachment
+* Understand difference between List and Set
+* Enforce uniqueness constraints
+* Learn when to use HashSet in real systems
+* Prevent duplicate data issues
 
 ---
 
 ## 🔮 Future Scope
 
-* Convert bogies into objects (OOP)
-* Add Goods Bogies
-* Track capacity and cargo
-* Build menu-driven system
-* Implement safety validation logic
+* Map bogie IDs to bogie objects (HashMap)
+* Add validation rules for IDs
+* Integrate with passenger/goods bogies
+* Build full train composition system
 
 ---
 
 ## 📎 Notes
 
-* This is **UC2**, building on UC1
-* Uses same file structure for version control across branches
+* This is **UC3**, building on UC2
+* Same file name used for branch-based development
+* Focus shifts from dynamic storage → data integrity
 
 ---
 
-**Built for practical Java learning and system design understanding.**
+**Built for practical Java + real-world system modeling.**
