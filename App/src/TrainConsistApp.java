@@ -1,5 +1,19 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+
+class Bogie {
+    String name;
+    int capacity;
+
+    public Bogie(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
+    }
+
+    @Override
+    public String toString() {
+        return name + " (" + capacity + " seats)";
+    }
+}
 
 public class TrainConsistApp {
 
@@ -7,26 +21,35 @@ public class TrainConsistApp {
 
         System.out.println("=== Train Consist Management App ===");
 
-        // 🔹 Create HashMap for bogie → capacity
-        Map<String, Integer> bogieCapacityMap = new HashMap<>();
+        // 🔹 Create List of Bogie objects
+        List<Bogie> bogies = new ArrayList<>();
 
-        // 🔹 Insert bogie capacities
-        bogieCapacityMap.put("Sleeper", 72);
-        bogieCapacityMap.put("AC Chair", 54);
-        bogieCapacityMap.put("First Class", 24);
+        // 🔹 Add passenger bogies
+        bogies.add(new Bogie("Sleeper", 72));
+        bogies.add(new Bogie("AC Chair", 56));
+        bogies.add(new Bogie("First Class", 24));
 
-        System.out.println("\nBogie Capacity Mapping:");
-
-        // 🔹 Iterate using entrySet()
-        for (Map.Entry<String, Integer> entry : bogieCapacityMap.entrySet()) {
-            System.out.println("Bogie: " + entry.getKey() +
-                    " | Capacity: " + entry.getValue());
+        System.out.println("\nBefore Sorting:");
+        for (Bogie b : bogies) {
+            System.out.println(b);
         }
 
-        // 🔹 Example lookup
-        System.out.println("\nCapacity of Sleeper: " +
-                bogieCapacityMap.get("Sleeper"));
+        // 🔹 Sort using Comparator (ascending capacity)
+        bogies.sort(Comparator.comparingInt(b -> b.capacity));
 
-        System.out.println("\nSystem ready for analytics and validation...");
+        System.out.println("\nAfter Sorting by Capacity (Ascending):");
+        for (Bogie b : bogies) {
+            System.out.println(b);
+        }
+
+        // 🔹 Optional: Descending sort (for planning high capacity first)
+        bogies.sort((b1, b2) -> b2.capacity - b1.capacity);
+
+        System.out.println("\nAfter Sorting by Capacity (Descending):");
+        for (Bogie b : bogies) {
+            System.out.println(b);
+        }
+
+        System.out.println("\nSystem ready for capacity-based planning...");
     }
 }
