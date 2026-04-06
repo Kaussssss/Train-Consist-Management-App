@@ -8,74 +8,87 @@
 
 ## 📌 Project Overview
 
-The **Train Consist Management App** is a console-based Java application that simulates how railway systems manage train consists — collections of bogies attached to an engine.
+The **Train Consist Management App** is a console-based Java application that simulates how a railway system manages train consist formation — the ordered arrangement of bogies attached to an engine.
 
-Each use case introduces a new data structure or concept aligned with real-world constraints.
+Each use case introduces new data structures to solve real-world constraints.
 
 ---
 
-## 🎯 Use Case 3: Track Unique Bogie IDs (Set – HashSet)
+## 🎯 Use Case 4: Maintain Ordered Train Consist (LinkedList)
 
 ### ✅ Objective
 
-* Store bogie IDs uniquely
-* Prevent duplicate entries
-* Demonstrate automatic deduplication using Set
+* Maintain strict ordering of bogies
+* Insert bogies at specific positions
+* Remove bogies efficiently
+* Simulate real train chaining behavior
 
 ---
 
-## ⚠️ Problem in UC2
+## ⚠️ Problem in UC3
 
-* Used `ArrayList`
-* Allowed duplicate bogie entries
-* Violates real-world railway rules (IDs must be unique)
+* Used `HashSet`
+* Ensured uniqueness but:
 
-Example issue:
+    * ❌ No ordering guarantee
+    * ❌ Cannot represent real train sequence
+
+Real-world requirement:
 
 ```
-BG101, BG101 ❌
+Engine → Passenger → Cargo → Guard
 ```
+
+---
+
+## ⚙️ Solution: LinkedList
+
+Why `LinkedList`?
+
+* Maintains order
+* Efficient insertion/removal
+* Models node-based chaining (like real train bogies)
 
 ---
 
 ## ⚙️ Features Implemented
 
-* Unique bogie ID tracking using `HashSet`
-* Duplicate insertion attempts handled automatically
-* Fast lookup using hashing
-* Displays only unique bogies
+* Ordered bogie insertion
+* Middle insertion (Pantry Car)
+* Removal of head and tail bogies
+* Final consist display
 
 ---
 
 ## 🧠 Concepts Used
 
-### 🔹 Set Interface
+### 🔹 LinkedList
 
-* Does NOT allow duplicates
-* No index-based access
-
-### 🔹 HashSet
-
-* Implements Set
-* Uses hashing for fast operations
-* Automatically removes duplicates
+* Doubly linked structure
+* Each node → data + next + previous
 
 ### 🔹 add()
 
 ```java
-bogieIDs.add("BG101");
+trainConsist.add("Sleeper");
 ```
 
-### 🔹 contains()
+### 🔹 add(index, element)
 
 ```java
-bogieIDs.contains("BG101");
+trainConsist.add(2, "Pantry");
 ```
 
-### 🔹 Automatic Deduplication
+### 🔹 addFirst() / addLast()
 
-* Duplicate values are ignored internally
-* No manual validation needed
+* Insert at beginning or end
+
+### 🔹 removeFirst() / removeLast()
+
+```java
+trainConsist.removeFirst();
+trainConsist.removeLast();
+```
 
 ---
 
@@ -100,43 +113,47 @@ java TrainConsistApp
 ```
 === Train Consist Management App ===
 
-Bogie IDs after insertion (duplicates attempted):
-[BG101, BG102, BG103]
+Initial Train Consist:
+[Engine, Sleeper, AC, Cargo, Guard]
 
-Does BG101 exist? true
+After inserting Pantry at position 2:
+[Engine, Sleeper, Pantry, AC, Cargo, Guard]
 
-Final Unique Bogie IDs:
-[BG101, BG102, BG103]
+After removing first and last bogie:
+[Sleeper, Pantry, AC, Cargo]
 
-System ensures no duplicate bogie IDs.
+Final Train Consist:
+[Sleeper, Pantry, AC, Cargo]
+
+Order preserved using LinkedList.
 ```
 
 ---
 
 ## 🚀 Key Learning Outcomes
 
-* Understand difference between List and Set
-* Enforce uniqueness constraints
-* Learn when to use HashSet in real systems
-* Prevent duplicate data issues
+* Understand importance of order in real systems
+* Learn LinkedList vs ArrayList trade-offs
+* Practice insertion/deletion operations
+* Visualize node-based data structures
 
 ---
 
 ## 🔮 Future Scope
 
-* Map bogie IDs to bogie objects (HashMap)
-* Add validation rules for IDs
-* Integrate with passenger/goods bogies
-* Build full train composition system
+* Combine LinkedList + HashSet (ordered + unique IDs)
+* Create Bogie classes (OOP model)
+* Add validation for sequence rules
+* Build full train simulation system
 
 ---
 
 ## 📎 Notes
 
-* This is **UC3**, building on UC2
-* Same file name used for branch-based development
-* Focus shifts from dynamic storage → data integrity
+* This is **UC4**, extending UC3
+* Same file name used for version-controlled branching
+* Focus shifts from uniqueness → ordering
 
 ---
 
-**Built for practical Java + real-world system modeling.**
+**Built for practical Java learning and system-level thinking.**
