@@ -8,85 +8,85 @@
 
 ## 📌 Project Overview
 
-The **Train Consist Management App** is a console-based Java application that simulates how a railway system manages train consist formation — ensuring correct ordering, uniqueness, and operational constraints.
+The **Train Consist Management App** is a console-based Java application that simulates how a railway system manages train consist formation — including structure, ordering, uniqueness, and now **attribute mapping**.
 
-Each use case introduces a new data structure aligned with real-world railway requirements.
+Each use case builds toward a realistic system design.
 
 ---
 
-## 🎯 Use Case 5: Preserve Insertion Order of Bogies (LinkedHashSet)
+## 🎯 Use Case 6: Map Bogie to Capacity (HashMap)
 
 ### ✅ Objective
 
-* Maintain insertion order of bogies
-* Prevent duplicate entries
-* Ensure predictable and valid train formation
+* Associate each bogie with its capacity
+* Store data using key–value mapping
+* Enable efficient lookup and analysis
 
 ---
 
-## ⚠️ Problem in UC4
+## ⚠️ Problem in UC5
 
-* Used `LinkedList`
-* Maintained order but:
+* Used `LinkedHashSet`
+* Maintained order + uniqueness but:
 
-  * ❌ Allowed duplicates
-  * ❌ No enforced uniqueness
-  * ❌ Could lead to invalid train composition
+  * ❌ No data association
+  * ❌ Cannot store capacity
+  * ❌ Cannot perform validation or analytics
 
 ---
 
-## ⚙️ Solution: LinkedHashSet
+## ⚙️ Solution: HashMap
 
-Why `LinkedHashSet`?
+Why `HashMap`?
 
-* Combines:
+* Stores **key–value pairs**
+* Fast lookup → O(1)
+* Perfect for mapping:
 
-  * ✔ **HashSet → uniqueness**
-  * ✔ **LinkedList → order preservation**
-* Ensures:
-
-  * No duplicate bogies
-  * Same order as insertion
+```text
+Bogie → Capacity
+```
 
 ---
 
 ## ⚙️ Features Implemented
 
-* Ordered bogie insertion
-* Duplicate prevention
-* Automatic deduplication
-* Consistent train formation display
+* Bogie-capacity mapping
+* Key–value storage
+* Iteration over entries
+* Fast retrieval using keys
 
 ---
 
 ## 🧠 Concepts Used
 
-### 🔹 LinkedHashSet
+### 🔹 Map Interface
 
-* Maintains insertion order
-* Stores unique elements only
-* Backed by hash table + linked list
+* Represents key–value relationships
+* Keys must be unique
 
-### 🔹 Set Interface
+### 🔹 HashMap
 
-* No duplicate values allowed
-* Ensures data integrity
+* Backed by hashing
+* Fast insertion and lookup
 
-### 🔹 add()
-
-```java
-trainFormation.add("Sleeper");
-```
-
-### 🔹 contains()
+### 🔹 put()
 
 ```java
-trainFormation.contains("Sleeper");
+bogieCapacityMap.put("Sleeper", 72);
 ```
 
-### 🔹 Automatic Deduplication
+### 🔹 get()
 
-* Duplicate bogies are ignored internally
+```java
+bogieCapacityMap.get("Sleeper");
+```
+
+### 🔹 entrySet()
+
+```java
+for (Map.Entry<String, Integer> entry : bogieCapacityMap.entrySet())
+```
 
 ---
 
@@ -111,43 +111,42 @@ java TrainConsistApp
 ```
 === Train Consist Management App ===
 
-Train Formation (Insertion Order Preserved):
-[Engine, Sleeper, Cargo, Guard]
+Bogie Capacity Mapping:
+Bogie: Sleeper | Capacity: 72
+Bogie: AC Chair | Capacity: 54
+Bogie: First Class | Capacity: 24
 
-Does Sleeper exist? true
+Capacity of Sleeper: 72
 
-Final Train Formation:
-[Engine, Sleeper, Cargo, Guard]
-
-Duplicates automatically removed. Order preserved.
+System ready for analytics and validation...
 ```
 
 ---
 
 ## 🚀 Key Learning Outcomes
 
-* Understand hybrid data structures
-* Combine ordering + uniqueness
-* Learn when to use LinkedHashSet over HashSet/List
-* Enforce real-world constraints in systems
+* Understand key–value data modeling
+* Learn HashMap operations
+* Enable fast lookup using keys
+* Move from simple collections → structured data systems
 
 ---
 
 ## 🔮 Future Scope
 
-* Introduce Stack for LIFO bogie removal
-* Map bogie IDs to objects using HashMap
-* Add validation rules for train formation
-* Build full simulation engine
+* Map bogie ID → Bogie Object (advanced modeling)
+* Add validation rules (max capacity limits)
+* Integrate passenger + goods bogies
+* Perform analytics (total capacity, load distribution)
 
 ---
 
 ## 📎 Notes
 
-* This is **UC5**, extending UC4
-* Same file name used for branch-based version control
-* Focus shifts from ordering → ordering + uniqueness
+* This is **UC6**, extending UC5
+* Same file name used for branch-based development
+* Focus shifts from structure → data association
 
 ---
 
-**Built for real-world Java system design and data structure mastery.**
+**Built for real-world Java system design and scalable data modeling.**
