@@ -8,84 +8,81 @@
 
 ## 📌 Project Overview
 
-The **Train Consist Management App** simulates railway train composition using Java collections and OOP concepts. This use case introduces **functional-style filtering using the Stream API**.
+The **Train Consist Management App** simulates railway bogie management using Java collections, OOP, and modern functional programming techniques.
+
+This use case introduces **data grouping and categorization using Stream collectors**.
 
 ---
 
-## 🎯 Use Case 8: Filter Passenger Bogies Using Streams
+## 🎯 Use Case 9: Group Bogies by Type (Collectors.groupingBy)
 
 ### ✅ Objective
 
-* Filter bogies based on capacity
-* Use Stream API for clean, declarative logic
-* Preserve original data while generating filtered results
+* Group bogies by category/type
+* Convert flat data into structured form
+* Enable reporting and analytics
 
 ---
 
-## ⚠️ Problem in UC7
+## ⚠️ Problem in UC8
 
-* Sorting works but:
+* Filtering works but:
 
-  * ❌ Cannot selectively extract bogies
-  * ❌ Requires verbose loops for filtering
-  * ❌ Harder to maintain logic
+  * ❌ Data remains flat
+  * ❌ No categorization
+  * ❌ Hard to generate reports
 
 ---
 
-## ⚙️ Solution: Stream API
+## ⚙️ Solution: groupingBy()
 
-Why Streams?
+Why grouping?
 
-* Declarative → focus on **what**, not how
-* Cleaner and more readable
-* No manual loops needed
+* Organizes data into logical categories
+* Produces structured output (Map)
+* Enables reporting and analytics
 
 ---
 
 ## ⚙️ Features Implemented
 
 * Convert list → stream
-* Apply filtering condition (capacity > 60)
-* Collect results into a new list
+* Group bogies by type (name)
+* Store result in Map
+* Display structured grouped output
 * Preserve original list
 
 ---
 
 ## 🧠 Concepts Used
 
-### 🔹 stream()
+### 🔹 groupingBy()
 
 ```java
-bogies.stream()
+.collect(Collectors.groupingBy(b -> b.name))
 ```
 
 ---
 
-### 🔹 filter()
+### 🔹 Map Structure
 
-```java
-.filter(b -> b.capacity > 60)
+```text
+Map<String, List<Bogie>>
 ```
 
 ---
 
-### 🔹 collect()
+### 🔹 Stream Pipeline
+
+* List → Stream → Group → Map
+
+---
+
+### 🔹 Lambda Classification
 
 ```java
-.collect(Collectors.toList())
+b -> b.name
 ```
-
----
-
-### 🔹 Lambda Expressions
-
-* Short, functional logic definition
-
----
-
-### 🔹 Declarative Programming
-
-* Focus on result, not iteration
 
 ---
 
@@ -111,61 +108,72 @@ java TrainConsistApp
 === Train Consist Management App ===
 
 All Bogies:
-Sleeper (72 seats)
-AC Chair (56 seats)
-First Class (24 seats)
-Luxury (80 seats)
+Sleeper (72)
+AC Chair (56)
+Sleeper (70)
+First Class (24)
+AC Chair (60)
 
-Filtered Bogies (Capacity > 60):
-Sleeper (72 seats)
-Luxury (80 seats)
+Grouped Bogies:
 
-Original List After Filtering (Unchanged):
-Sleeper (72 seats)
-AC Chair (56 seats)
-First Class (24 seats)
-Luxury (80 seats)
+Type: Sleeper
+  Sleeper (72)
+  Sleeper (70)
 
-System ready for advanced filtering and analytics...
+Type: AC Chair
+  AC Chair (56)
+  AC Chair (60)
+
+Type: First Class
+  First Class (24)
+
+Original List (Unchanged):
+Sleeper (72)
+AC Chair (56)
+Sleeper (70)
+First Class (24)
+AC Chair (60)
+
+System ready for structured reporting...
 ```
 
 ---
 
 ## 🚀 Key Learning Outcomes
 
-* Understand Stream API basics
-* Apply filtering using lambda expressions
-* Maintain immutability of original data
-* Write clean, readable, modern Java code
+* Transform flat data into structured format
+* Use groupingBy for categorization
+* Understand Map-based aggregation
+* Prepare for analytics and reporting systems
 
 ---
 
 ## 🧪 Test Case Coverage
 
-* Capacity > threshold → included
-* Capacity = threshold → excluded
-* Capacity < threshold → excluded
-* Multiple matches handled
+* Same type → grouped together
+* Different types → separate keys
+* Multiple items per group handled
 * Empty list handled
 * Original list unchanged
+* Correct Map structure maintained
 
 ---
 
 ## 🔮 Future Scope
 
-* Chain multiple stream operations (filter + sort)
-* Group bogies by type
-* Aggregate total capacity
-* Build analytics dashboard
+* Nested grouping (type → capacity range)
+* Aggregation (total seats per type)
+* Sorting within groups
+* Dashboard-style analytics
 
 ---
 
 ## 📎 Notes
 
-* This is **UC8**, extending UC7
-* Same file maintained for branch-based workflow
-* Shift: **OOP → Functional Programming (Streams)**
+* This is **UC9**, extending UC8
+* Same file naming for Git branching
+* Shift: **Filtering → Aggregation & Structuring**
 
 ---
 
-**Built for modern Java development and clean data processing.**
+**Built for advanced Java stream processing and data analytics.**
