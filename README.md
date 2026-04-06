@@ -8,89 +8,84 @@
 
 ## 📌 Project Overview
 
-The **Train Consist Management App** is a console-based Java application that simulates how railway systems manage train consists — including structure, uniqueness, attribute mapping, and now **intelligent sorting based on business logic**.
+The **Train Consist Management App** simulates railway train composition using Java collections and OOP concepts. This use case introduces **functional-style filtering using the Stream API**.
 
 ---
 
-## 🎯 Use Case 7: Sort Bogies by Capacity (Comparator)
+## 🎯 Use Case 8: Filter Passenger Bogies Using Streams
 
 ### ✅ Objective
 
-* Represent bogies as objects
-* Sort bogies based on seating capacity
-* Apply custom business logic using Comparator
+* Filter bogies based on capacity
+* Use Stream API for clean, declarative logic
+* Preserve original data while generating filtered results
 
 ---
 
-## ⚠️ Problem in UC6
+## ⚠️ Problem in UC7
 
-* Used `HashMap` for storage
-* Data available but:
+* Sorting works but:
 
-  * ❌ No ordering
-  * ❌ No ranking
-  * ❌ Hard to analyze capacity efficiently
+  * ❌ Cannot selectively extract bogies
+  * ❌ Requires verbose loops for filtering
+  * ❌ Harder to maintain logic
 
 ---
 
-## ⚙️ Solution: Comparator + Object Sorting
+## ⚙️ Solution: Stream API
 
-Why Comparator?
+Why Streams?
 
-* Allows **custom sorting logic**
-* Separates **data from behavior**
-* Enables **business-driven ordering**
+* Declarative → focus on **what**, not how
+* Cleaner and more readable
+* No manual loops needed
 
 ---
 
 ## ⚙️ Features Implemented
 
-* Bogie class with attributes (name, capacity)
-* List of bogie objects
-* Sorting using Comparator
-* Ascending and descending ordering
+* Convert list → stream
+* Apply filtering condition (capacity > 60)
+* Collect results into a new list
+* Preserve original list
 
 ---
 
 ## 🧠 Concepts Used
 
-### 🔹 Custom Class (Bogie)
+### 🔹 stream()
 
 ```java
-class Bogie {
-    String name;
-    int capacity;
-}
+bogies.stream()
 ```
 
 ---
 
-### 🔹 Comparator Interface
-
-* Defines custom comparison logic
-
----
-
-### 🔹 Lambda Expression
+### 🔹 filter()
 
 ```java
-bogies.sort(Comparator.comparingInt(b -> b.capacity));
+.filter(b -> b.capacity > 60)
 ```
 
 ---
 
-### 🔹 Descending Sort
+### 🔹 collect()
 
 ```java
-bogies.sort((b1, b2) -> b2.capacity - b1.capacity);
+.collect(Collectors.toList())
 ```
 
 ---
 
-### 🔹 List Collection
+### 🔹 Lambda Expressions
 
-* Stores objects dynamically
-* Supports sorting and iteration
+* Short, functional logic definition
+
+---
+
+### 🔹 Declarative Programming
+
+* Focus on result, not iteration
 
 ---
 
@@ -115,50 +110,62 @@ java TrainConsistApp
 ```
 === Train Consist Management App ===
 
-Before Sorting:
+All Bogies:
 Sleeper (72 seats)
 AC Chair (56 seats)
 First Class (24 seats)
+Luxury (80 seats)
 
-After Sorting by Capacity (Ascending):
-First Class (24 seats)
-AC Chair (56 seats)
+Filtered Bogies (Capacity > 60):
 Sleeper (72 seats)
+Luxury (80 seats)
 
-After Sorting by Capacity (Descending):
+Original List After Filtering (Unchanged):
 Sleeper (72 seats)
 AC Chair (56 seats)
 First Class (24 seats)
+Luxury (80 seats)
 
-System ready for capacity-based planning...
+System ready for advanced filtering and analytics...
 ```
 
 ---
 
 ## 🚀 Key Learning Outcomes
 
-* Understand object-based data modeling
-* Apply custom sorting using Comparator
-* Use lambda expressions effectively
-* Separate data and business logic cleanly
+* Understand Stream API basics
+* Apply filtering using lambda expressions
+* Maintain immutability of original data
+* Write clean, readable, modern Java code
+
+---
+
+## 🧪 Test Case Coverage
+
+* Capacity > threshold → included
+* Capacity = threshold → excluded
+* Capacity < threshold → excluded
+* Multiple matches handled
+* Empty list handled
+* Original list unchanged
 
 ---
 
 ## 🔮 Future Scope
 
-* Extend Bogie into PassengerBogie and GoodsBogie (Inheritance)
-* Add sorting by multiple parameters (capacity + type)
-* Implement priority-based allocation system
-* Integrate with full train simulation engine
+* Chain multiple stream operations (filter + sort)
+* Group bogies by type
+* Aggregate total capacity
+* Build analytics dashboard
 
 ---
 
 ## 📎 Notes
 
-* This is **UC7**, extending UC6
-* Same file naming maintained for branch-based workflow
-* Major shift: **Collections → OOP + Business Logic**
+* This is **UC8**, extending UC7
+* Same file maintained for branch-based workflow
+* Shift: **OOP → Functional Programming (Streams)**
 
 ---
 
-**Built for advanced Java system design and real-world modeling.**
+**Built for modern Java development and clean data processing.**
