@@ -8,79 +8,81 @@
 
 ## 📌 Project Overview
 
-The **Train Consist Management App** simulates railway bogie management using Java collections, OOP, and modern Stream API operations.
-
-This use case introduces **aggregation using reduce()** to compute total seating capacity.
+The **Train Consist Management App** simulates railway system operations using Java collections, OOP, streams, and now **input validation using Regular Expressions (Regex)**.
 
 ---
 
-## 🎯 Use Case 10: Count Total Seats in Train (reduce)
+## 🎯 Use Case 11: Validate Train ID & Cargo Codes (Regex)
 
 ### ✅ Objective
 
-* Aggregate seating capacities
-* Compute total number of seats
-* Use functional programming instead of loops
+* Validate input formats
+* Enforce strict business rules
+* Prevent invalid data entry
 
 ---
 
-## ⚠️ Problem in UC9
+## ⚠️ Problem in UC10
 
-* Data is grouped but:
+* Data processing works but:
 
-  * ❌ No numerical insight
-  * ❌ No total capacity calculation
-  * ❌ No analytics for planning
+  * ❌ Assumes all inputs are valid
+  * ❌ No format validation
+  * ❌ Risk of corrupted data
 
 ---
 
-## ⚙️ Solution: map() + reduce()
+## ⚙️ Solution: Regular Expressions (Regex)
 
-Why reduce?
+Why Regex?
 
-* Combines multiple values → single result
-* Perfect for totals, sums, metrics
+* Enforces strict input format
+* Prevents invalid data entry
+* Ensures system reliability
 
 ---
 
 ## ⚙️ Features Implemented
 
-* Extract capacity using map()
-* Aggregate values using reduce()
-* Display total seating capacity
-* Preserve original data
+* Train ID validation
+* Cargo code validation
+* Pattern matching using regex
+* User input handling
 
 ---
 
 ## 🧠 Concepts Used
 
-### 🔹 map()
+### 🔹 Regex Patterns
 
-```java id="dwrm6h"
-.map(b -> b.capacity)
+```java
+TRN-\\d{4}
+PET-[A-Z]{2}
 ```
 
 ---
 
-### 🔹 reduce()
+### 🔹 Pattern Class
 
-```java id="x0y9nm"
-.reduce(0, Integer::sum)
+```java
+Pattern.compile(regex)
 ```
 
 ---
 
-### 🔹 Method Reference
+### 🔹 Matcher Class
 
-```java id="3uq3fc"
-Integer::sum
+```java
+pattern.matcher(input)
 ```
 
 ---
 
-### 🔹 Stream Pipeline
+### 🔹 matches()
 
-* List → Stream → Map → Reduce → Result
+```java
+matcher.matches()
+```
 
 ---
 
@@ -88,13 +90,13 @@ Integer::sum
 
 1. Compile:
 
-```bash id="5f7tqj"
+```bash
 javac TrainConsistApp.java
 ```
 
 2. Run:
 
-```bash id="q6w2tf"
+```bash
 java TrainConsistApp
 ```
 
@@ -102,63 +104,56 @@ java TrainConsistApp
 
 ## 🖥️ Sample Output
 
-```id="v8c9gh"
+```text
 === Train Consist Management App ===
 
-All Bogies:
-Sleeper (72)
-AC Chair (56)
-First Class (24)
-Luxury (80)
+Enter Train ID (format: TRN-1234): TRN-1234
+Enter Cargo Code (format: PET-AB): PET-XY
 
-Total Seating Capacity: 232
+Train ID is VALID ✅
+Cargo Code is VALID ✅
 
-Original List (Unchanged):
-Sleeper (72)
-AC Chair (56)
-First Class (24)
-Luxury (80)
-
-System ready for capacity analytics...
+System ready for validated processing...
 ```
 
 ---
 
 ## 🚀 Key Learning Outcomes
 
-* Understand aggregation using reduce()
-* Extract data using map()
-* Perform numeric analysis on collections
-* Replace loops with functional pipelines
+* Understand regex-based validation
+* Use Pattern and Matcher classes
+* Enforce strict input formats
+* Improve data integrity
 
 ---
 
 ## 🧪 Test Case Coverage
 
-* Multiple bogies → correct sum
-* Single bogie → same capacity returned
-* Empty list → returns 0
-* All bogies included in sum
-* map() correctly extracts values
-* Original list unchanged
+* Valid Train ID → accepted
+* Invalid Train ID → rejected
+* Valid Cargo Code → accepted
+* Invalid Cargo Code → rejected
+* Case sensitivity enforced
+* Exact pattern matching ensured
+* Empty input handled safely
 
 ---
 
 ## 🔮 Future Scope
 
-* Average capacity calculation
-* Max/min capacity detection
-* Total capacity by category
-* Dashboard analytics system
+* Add validation for bogie IDs
+* Implement input sanitization
+* Combine validation + processing pipeline
+* Build user-friendly CLI interface
 
 ---
 
 ## 📎 Notes
 
-* This is **UC10**, extending UC9
-* Same file naming for Git branches
-* Shift: **Data structuring → Data analytics**
+* This is **UC11**, extending UC10
+* Same file maintained for branch-based workflow
+* Shift: **Data processing → Data validation**
 
 ---
 
-**Built for real-world Java analytics and functional programming mastery.**
+**Built for robust Java systems with strong input validation.**
