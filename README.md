@@ -8,81 +8,79 @@
 
 ## 📌 Project Overview
 
-The **Train Consist Management App** simulates railway system operations using Java collections, OOP, streams, and now **input validation using Regular Expressions (Regex)**.
+The **Train Consist Management App** simulates railway system behavior using Java collections, streams, OOP, and validation techniques.
+
+This final use case introduces **safety compliance enforcement using Streams and business rules**.
 
 ---
 
-## 🎯 Use Case 11: Validate Train ID & Cargo Codes (Regex)
+## 🎯 Use Case 12: Safety Compliance Check for Goods Bogies
 
 ### ✅ Objective
 
-* Validate input formats
-* Enforce strict business rules
-* Prevent invalid data entry
+* Enforce domain-specific safety rules
+* Validate cargo assignments
+* Prevent unsafe train formations
 
 ---
 
-## ⚠️ Problem in UC10
+## ⚠️ Problem in UC11
 
-* Data processing works but:
+* Input is validated but:
 
-  * ❌ Assumes all inputs are valid
-  * ❌ No format validation
-  * ❌ Risk of corrupted data
+  * ❌ No domain rule enforcement
+  * ❌ Unsafe cargo assignments possible
+  * ❌ System trusts all data blindly
 
 ---
 
-## ⚙️ Solution: Regular Expressions (Regex)
+## ⚙️ Solution: Stream Validation + Business Rules
 
-Why Regex?
+### Safety Rule:
 
-* Enforces strict input format
-* Prevents invalid data entry
-* Ensures system reliability
+```text
+Cylindrical bogie → ONLY Petroleum allowed
+```
 
 ---
 
 ## ⚙️ Features Implemented
 
-* Train ID validation
-* Cargo code validation
-* Pattern matching using regex
-* User input handling
+* Goods bogie modeling (type + cargo)
+* Stream-based validation using `allMatch()`
+* Conditional logic enforcement
+* Safety result output
 
 ---
 
 ## 🧠 Concepts Used
 
-### 🔹 Regex Patterns
+### 🔹 allMatch()
 
 ```java
-TRN-\\d{4}
-PET-[A-Z]{2}
+.allMatch(b -> condition)
 ```
 
 ---
 
-### 🔹 Pattern Class
+### 🔹 Lambda Expression
 
 ```java
-Pattern.compile(regex)
+b -> !b.type.equalsIgnoreCase("Cylindrical") || 
+     b.cargo.equalsIgnoreCase("Petroleum")
 ```
 
 ---
 
-### 🔹 Matcher Class
+### 🔹 Short-Circuit Evaluation
 
-```java
-pattern.matcher(input)
-```
+* Stops checking as soon as violation is found
 
 ---
 
-### 🔹 matches()
+### 🔹 Business Rule Modeling
 
-```java
-matcher.matches()
-```
+* Converts real-world rules → executable logic
 
 ---
 
@@ -107,53 +105,53 @@ java TrainConsistApp
 ```text
 === Train Consist Management App ===
 
-Enter Train ID (format: TRN-1234): TRN-1234
-Enter Cargo Code (format: PET-AB): PET-XY
+Goods Bogies:
+Cylindrical -> Petroleum
+Box -> Coal
+Open -> Grain
+Cylindrical -> Petroleum
 
-Train ID is VALID ✅
-Cargo Code is VALID ✅
+Train is SAFETY COMPLIANT ✅
 
-System ready for validated processing...
+System ready for safe train operations...
 ```
 
 ---
 
 ## 🚀 Key Learning Outcomes
 
-* Understand regex-based validation
-* Use Pattern and Matcher classes
-* Enforce strict input formats
-* Improve data integrity
+* Enforce domain rules programmatically
+* Use allMatch() for validation
+* Apply conditional logic in streams
+* Model real-world safety constraints
 
 ---
 
 ## 🧪 Test Case Coverage
 
-* Valid Train ID → accepted
-* Invalid Train ID → rejected
-* Valid Cargo Code → accepted
-* Invalid Cargo Code → rejected
-* Case sensitivity enforced
-* Exact pattern matching ensured
-* Empty input handled safely
+* All valid bogies → safe
+* Cylindrical + wrong cargo → unsafe
+* Non-cylindrical → flexible
+* Mixed valid + invalid → unsafe
+* Empty list → safe (no violations)
 
 ---
 
 ## 🔮 Future Scope
 
-* Add validation for bogie IDs
-* Implement input sanitization
-* Combine validation + processing pipeline
-* Build user-friendly CLI interface
+* Add exception handling for violations
+* Build validation pipeline
+* Integrate passenger + goods system
+* Create real-time monitoring dashboard
 
 ---
 
 ## 📎 Notes
 
-* This is **UC11**, extending UC10
-* Same file maintained for branch-based workflow
-* Shift: **Data processing → Data validation**
+* This is **UC12**, final stage
+* Same file name used across branches
+* Shift: **Validation → Safety Enforcement**
 
 ---
 
-**Built for robust Java systems with strong input validation.**
+**Built as a complete Java system simulation with real-world constraints.**
