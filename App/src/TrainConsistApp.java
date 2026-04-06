@@ -1,5 +1,4 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedList;
 
 public class TrainConsistApp {
 
@@ -7,26 +6,36 @@ public class TrainConsistApp {
 
         System.out.println("=== Train Consist Management App ===");
 
-        // 🔹 Initialize HashSet for unique bogie IDs
-        Set<String> bogieIDs = new HashSet<>();
+        // 🔹 Initialize LinkedList for ordered train consist
+        LinkedList<String> trainConsist = new LinkedList<>();
 
-        // 🔹 Add bogie IDs (with intentional duplicates)
-        bogieIDs.add("BG101");
-        bogieIDs.add("BG102");
-        bogieIDs.add("BG103");
-        bogieIDs.add("BG101"); // duplicate
-        bogieIDs.add("BG102"); // duplicate
+        // 🔹 Add bogies (order matters)
+        trainConsist.add("Engine");
+        trainConsist.add("Sleeper");
+        trainConsist.add("AC");
+        trainConsist.add("Cargo");
+        trainConsist.add("Guard");
 
-        System.out.println("\nBogie IDs after insertion (duplicates attempted):");
-        System.out.println(bogieIDs);
+        System.out.println("\nInitial Train Consist:");
+        System.out.println(trainConsist);
 
-        // 🔹 Check existence
-        System.out.println("\nDoes BG101 exist? " + bogieIDs.contains("BG101"));
+        // 🔹 Insert Pantry Car at position 2 (index 1-based → index 2 means position 3)
+        trainConsist.add(2, "Pantry");
 
-        // 🔹 Final unique set
-        System.out.println("\nFinal Unique Bogie IDs:");
-        System.out.println(bogieIDs);
+        System.out.println("\nAfter inserting Pantry at position 2:");
+        System.out.println(trainConsist);
 
-        System.out.println("\nSystem ensures no duplicate bogie IDs.");
+        // 🔹 Remove first and last bogie
+        trainConsist.removeFirst();
+        trainConsist.removeLast();
+
+        System.out.println("\nAfter removing first and last bogie:");
+        System.out.println(trainConsist);
+
+        // 🔹 Final ordered consist
+        System.out.println("\nFinal Train Consist:");
+        System.out.println(trainConsist);
+
+        System.out.println("\nOrder preserved using LinkedList.");
     }
 }
