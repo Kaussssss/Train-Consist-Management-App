@@ -8,85 +8,89 @@
 
 ## 📌 Project Overview
 
-The **Train Consist Management App** is a console-based Java application that simulates how a railway system manages train consist formation — including structure, ordering, uniqueness, and now **attribute mapping**.
-
-Each use case builds toward a realistic system design.
+The **Train Consist Management App** is a console-based Java application that simulates how railway systems manage train consists — including structure, uniqueness, attribute mapping, and now **intelligent sorting based on business logic**.
 
 ---
 
-## 🎯 Use Case 6: Map Bogie to Capacity (HashMap)
+## 🎯 Use Case 7: Sort Bogies by Capacity (Comparator)
 
 ### ✅ Objective
 
-* Associate each bogie with its capacity
-* Store data using key–value mapping
-* Enable efficient lookup and analysis
+* Represent bogies as objects
+* Sort bogies based on seating capacity
+* Apply custom business logic using Comparator
 
 ---
 
-## ⚠️ Problem in UC5
+## ⚠️ Problem in UC6
 
-* Used `LinkedHashSet`
-* Maintained order + uniqueness but:
+* Used `HashMap` for storage
+* Data available but:
 
-  * ❌ No data association
-  * ❌ Cannot store capacity
-  * ❌ Cannot perform validation or analytics
+  * ❌ No ordering
+  * ❌ No ranking
+  * ❌ Hard to analyze capacity efficiently
 
 ---
 
-## ⚙️ Solution: HashMap
+## ⚙️ Solution: Comparator + Object Sorting
 
-Why `HashMap`?
+Why Comparator?
 
-* Stores **key–value pairs**
-* Fast lookup → O(1)
-* Perfect for mapping:
-
-```text
-Bogie → Capacity
-```
+* Allows **custom sorting logic**
+* Separates **data from behavior**
+* Enables **business-driven ordering**
 
 ---
 
 ## ⚙️ Features Implemented
 
-* Bogie-capacity mapping
-* Key–value storage
-* Iteration over entries
-* Fast retrieval using keys
+* Bogie class with attributes (name, capacity)
+* List of bogie objects
+* Sorting using Comparator
+* Ascending and descending ordering
 
 ---
 
 ## 🧠 Concepts Used
 
-### 🔹 Map Interface
-
-* Represents key–value relationships
-* Keys must be unique
-
-### 🔹 HashMap
-
-* Backed by hashing
-* Fast insertion and lookup
-
-### 🔹 put()
+### 🔹 Custom Class (Bogie)
 
 ```java
-bogieCapacityMap.put("Sleeper", 72);
+class Bogie {
+    String name;
+    int capacity;
+}
 ```
 
-### 🔹 get()
+---
+
+### 🔹 Comparator Interface
+
+* Defines custom comparison logic
+
+---
+
+### 🔹 Lambda Expression
 
 ```java
-bogieCapacityMap.get("Sleeper");
+bogies.sort(Comparator.comparingInt(b -> b.capacity));
 ```
 
-### 🔹 entrySet()
+---
+
+### 🔹 Descending Sort
 
 ```java
-for (Map.Entry<String, Integer> entry : bogieCapacityMap.entrySet())
+bogies.sort((b1, b2) -> b2.capacity - b1.capacity);
 ```
+
+---
+
+### 🔹 List Collection
+
+* Stores objects dynamically
+* Supports sorting and iteration
 
 ---
 
@@ -111,42 +115,50 @@ java TrainConsistApp
 ```
 === Train Consist Management App ===
 
-Bogie Capacity Mapping:
-Bogie: Sleeper | Capacity: 72
-Bogie: AC Chair | Capacity: 54
-Bogie: First Class | Capacity: 24
+Before Sorting:
+Sleeper (72 seats)
+AC Chair (56 seats)
+First Class (24 seats)
 
-Capacity of Sleeper: 72
+After Sorting by Capacity (Ascending):
+First Class (24 seats)
+AC Chair (56 seats)
+Sleeper (72 seats)
 
-System ready for analytics and validation...
+After Sorting by Capacity (Descending):
+Sleeper (72 seats)
+AC Chair (56 seats)
+First Class (24 seats)
+
+System ready for capacity-based planning...
 ```
 
 ---
 
 ## 🚀 Key Learning Outcomes
 
-* Understand key–value data modeling
-* Learn HashMap operations
-* Enable fast lookup using keys
-* Move from simple collections → structured data systems
+* Understand object-based data modeling
+* Apply custom sorting using Comparator
+* Use lambda expressions effectively
+* Separate data and business logic cleanly
 
 ---
 
 ## 🔮 Future Scope
 
-* Map bogie ID → Bogie Object (advanced modeling)
-* Add validation rules (max capacity limits)
-* Integrate passenger + goods bogies
-* Perform analytics (total capacity, load distribution)
+* Extend Bogie into PassengerBogie and GoodsBogie (Inheritance)
+* Add sorting by multiple parameters (capacity + type)
+* Implement priority-based allocation system
+* Integrate with full train simulation engine
 
 ---
 
 ## 📎 Notes
 
-* This is **UC6**, extending UC5
-* Same file name used for branch-based development
-* Focus shifts from structure → data association
+* This is **UC7**, extending UC6
+* Same file naming maintained for branch-based workflow
+* Major shift: **Collections → OOP + Business Logic**
 
 ---
 
-**Built for real-world Java system design and scalable data modeling.**
+**Built for advanced Java system design and real-world modeling.**
