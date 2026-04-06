@@ -8,87 +8,85 @@
 
 ## 📌 Project Overview
 
-The **Train Consist Management App** is a console-based Java application that simulates how a railway system manages train consist formation — the ordered arrangement of bogies attached to an engine.
+The **Train Consist Management App** is a console-based Java application that simulates how a railway system manages train consist formation — ensuring correct ordering, uniqueness, and operational constraints.
 
-Each use case introduces new data structures to solve real-world constraints.
+Each use case introduces a new data structure aligned with real-world railway requirements.
 
 ---
 
-## 🎯 Use Case 4: Maintain Ordered Train Consist (LinkedList)
+## 🎯 Use Case 5: Preserve Insertion Order of Bogies (LinkedHashSet)
 
 ### ✅ Objective
 
-* Maintain strict ordering of bogies
-* Insert bogies at specific positions
-* Remove bogies efficiently
-* Simulate real train chaining behavior
+* Maintain insertion order of bogies
+* Prevent duplicate entries
+* Ensure predictable and valid train formation
 
 ---
 
-## ⚠️ Problem in UC3
+## ⚠️ Problem in UC4
 
-* Used `HashSet`
-* Ensured uniqueness but:
+* Used `LinkedList`
+* Maintained order but:
 
-    * ❌ No ordering guarantee
-    * ❌ Cannot represent real train sequence
-
-Real-world requirement:
-
-```
-Engine → Passenger → Cargo → Guard
-```
+  * ❌ Allowed duplicates
+  * ❌ No enforced uniqueness
+  * ❌ Could lead to invalid train composition
 
 ---
 
-## ⚙️ Solution: LinkedList
+## ⚙️ Solution: LinkedHashSet
 
-Why `LinkedList`?
+Why `LinkedHashSet`?
 
-* Maintains order
-* Efficient insertion/removal
-* Models node-based chaining (like real train bogies)
+* Combines:
+
+  * ✔ **HashSet → uniqueness**
+  * ✔ **LinkedList → order preservation**
+* Ensures:
+
+  * No duplicate bogies
+  * Same order as insertion
 
 ---
 
 ## ⚙️ Features Implemented
 
 * Ordered bogie insertion
-* Middle insertion (Pantry Car)
-* Removal of head and tail bogies
-* Final consist display
+* Duplicate prevention
+* Automatic deduplication
+* Consistent train formation display
 
 ---
 
 ## 🧠 Concepts Used
 
-### 🔹 LinkedList
+### 🔹 LinkedHashSet
 
-* Doubly linked structure
-* Each node → data + next + previous
+* Maintains insertion order
+* Stores unique elements only
+* Backed by hash table + linked list
+
+### 🔹 Set Interface
+
+* No duplicate values allowed
+* Ensures data integrity
 
 ### 🔹 add()
 
 ```java
-trainConsist.add("Sleeper");
+trainFormation.add("Sleeper");
 ```
 
-### 🔹 add(index, element)
+### 🔹 contains()
 
 ```java
-trainConsist.add(2, "Pantry");
+trainFormation.contains("Sleeper");
 ```
 
-### 🔹 addFirst() / addLast()
+### 🔹 Automatic Deduplication
 
-* Insert at beginning or end
-
-### 🔹 removeFirst() / removeLast()
-
-```java
-trainConsist.removeFirst();
-trainConsist.removeLast();
-```
+* Duplicate bogies are ignored internally
 
 ---
 
@@ -113,47 +111,43 @@ java TrainConsistApp
 ```
 === Train Consist Management App ===
 
-Initial Train Consist:
-[Engine, Sleeper, AC, Cargo, Guard]
+Train Formation (Insertion Order Preserved):
+[Engine, Sleeper, Cargo, Guard]
 
-After inserting Pantry at position 2:
-[Engine, Sleeper, Pantry, AC, Cargo, Guard]
+Does Sleeper exist? true
 
-After removing first and last bogie:
-[Sleeper, Pantry, AC, Cargo]
+Final Train Formation:
+[Engine, Sleeper, Cargo, Guard]
 
-Final Train Consist:
-[Sleeper, Pantry, AC, Cargo]
-
-Order preserved using LinkedList.
+Duplicates automatically removed. Order preserved.
 ```
 
 ---
 
 ## 🚀 Key Learning Outcomes
 
-* Understand importance of order in real systems
-* Learn LinkedList vs ArrayList trade-offs
-* Practice insertion/deletion operations
-* Visualize node-based data structures
+* Understand hybrid data structures
+* Combine ordering + uniqueness
+* Learn when to use LinkedHashSet over HashSet/List
+* Enforce real-world constraints in systems
 
 ---
 
 ## 🔮 Future Scope
 
-* Combine LinkedList + HashSet (ordered + unique IDs)
-* Create Bogie classes (OOP model)
-* Add validation for sequence rules
-* Build full train simulation system
+* Introduce Stack for LIFO bogie removal
+* Map bogie IDs to objects using HashMap
+* Add validation rules for train formation
+* Build full simulation engine
 
 ---
 
 ## 📎 Notes
 
-* This is **UC4**, extending UC3
-* Same file name used for version-controlled branching
-* Focus shifts from uniqueness → ordering
+* This is **UC5**, extending UC4
+* Same file name used for branch-based version control
+* Focus shifts from ordering → ordering + uniqueness
 
 ---
 
-**Built for practical Java learning and system-level thinking.**
+**Built for real-world Java system design and data structure mastery.**
