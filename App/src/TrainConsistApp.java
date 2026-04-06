@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 class Bogie {
     String name;
@@ -21,35 +22,28 @@ public class TrainConsistApp {
 
         System.out.println("=== Train Consist Management App ===");
 
-        // 🔹 Create List of Bogie objects
+        // 🔹 Create list of bogies (same as UC7)
         List<Bogie> bogies = new ArrayList<>();
-
-        // 🔹 Add passenger bogies
         bogies.add(new Bogie("Sleeper", 72));
         bogies.add(new Bogie("AC Chair", 56));
         bogies.add(new Bogie("First Class", 24));
+        bogies.add(new Bogie("Luxury", 80));
 
-        System.out.println("\nBefore Sorting:");
-        for (Bogie b : bogies) {
-            System.out.println(b);
-        }
+        System.out.println("\nAll Bogies:");
+        bogies.forEach(System.out::println);
 
-        // 🔹 Sort using Comparator (ascending capacity)
-        bogies.sort(Comparator.comparingInt(b -> b.capacity));
+        // 🔹 Stream filtering (capacity > 60)
+        List<Bogie> filteredBogies = bogies.stream()
+                .filter(b -> b.capacity > 60)
+                .collect(Collectors.toList());
 
-        System.out.println("\nAfter Sorting by Capacity (Ascending):");
-        for (Bogie b : bogies) {
-            System.out.println(b);
-        }
+        System.out.println("\nFiltered Bogies (Capacity > 60):");
+        filteredBogies.forEach(System.out::println);
 
-        // 🔹 Optional: Descending sort (for planning high capacity first)
-        bogies.sort((b1, b2) -> b2.capacity - b1.capacity);
+        // 🔹 Verify original list unchanged
+        System.out.println("\nOriginal List After Filtering (Unchanged):");
+        bogies.forEach(System.out::println);
 
-        System.out.println("\nAfter Sorting by Capacity (Descending):");
-        for (Bogie b : bogies) {
-            System.out.println(b);
-        }
-
-        System.out.println("\nSystem ready for capacity-based planning...");
+        System.out.println("\nSystem ready for advanced filtering and analytics...");
     }
 }
