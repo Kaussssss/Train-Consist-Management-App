@@ -8,74 +8,93 @@
 
 ## 📌 Project Overview
 
-The **Train Consist Management App** is a console-based Java application that simulates how a railway system manages a train’s consist — a collection of bogies attached to an engine.
+The **Train Consist Management App** is a console-based Java application that simulates how a railway system manages a train consist — a structured collection of bogies attached to an engine.
 
-This project is designed to demonstrate core Java concepts through a real-world railway scenario.
+This project incrementally builds functionality using real-world railway scenarios.
 
 ---
 
-## 🎯 Use Case 1: Initialize Train & Display Consist Summary
+## 🎯 Use Case 2: Add Passenger Bogies (ArrayList Operations)
 
 ### ✅ Objective
 
-* Start the application
-* Initialize an empty train consist
-* Display the initial state of the train
+* Dynamically add passenger bogies
+* Remove bogies from the train
+* Check existence of bogies
+* Display updated train consist
+
+---
+
+## ⚠️ Problem in UC1
+
+* Train consist was empty
+* No way to:
+
+    * Add bogies
+    * Remove bogies
+    * Check contents
+
+UC2 solves this using **ArrayList operations**
 
 ---
 
 ## ⚙️ Features Implemented
 
-* Console-based interaction
-* Dynamic train consist using `ArrayList`
-* Initial bogie count display
-* Clean application startup flow
+* Dynamic insertion of passenger bogies
+* Removal of specific bogies
+* Existence check using `contains()`
+* Maintains insertion order
+* Displays real-time updates of train consist
 
 ---
 
 ## 🧠 Concepts Used
 
-* **Class & Object-Oriented Design**
-  Encapsulates application logic within a Java class.
+### 🔹 ArrayList
 
-* **Main Method**
+* Dynamic resizing
+* Allows runtime insertion/deletion
 
-  ```java
-  public static void main(String[] args)
-  ```
+### 🔹 add()
 
-  Entry point of the application.
+```java
+passengerBogies.add("Sleeper");
+```
 
-* **Static Keyword**
-  Allows execution without creating an object instance.
+### 🔹 remove()
 
-* **ArrayList**
-  Dynamic data structure that allows resizing during runtime.
+```java
+passengerBogies.remove("AC Chair");
+```
 
-* **List Interface**
-  Provides abstraction over different list implementations.
+### 🔹 contains()
 
-* **Console Output**
-  Displays messages using `System.out.println()`.
+```java
+passengerBogies.contains("Sleeper");
+```
 
-* **Dynamic Initialization**
-  Starts with an empty collection that can grow as bogies are added.
+### 🔹 CRUD Operations
+
+* Create → add()
+* Read → display list
+* Delete → remove()
+* Check → contains()
 
 ---
 
 ## 🛠️ How to Run
 
-1. Compile the program:
+1. Compile:
 
-   ```bash
-   javac TrainConsistApp.java
-   ```
+```bash
+javac TrainConsistApp.java
+```
 
-2. Run the program:
+2. Run:
 
-   ```bash
-   java TrainConsistApp
-   ```
+```bash
+java TrainConsistApp
+```
 
 ---
 
@@ -83,40 +102,47 @@ This project is designed to demonstrate core Java concepts through a real-world 
 
 ```
 === Train Consist Management App ===
-Train initialized successfully.
-Current number of bogies: 0
-System ready for operations...
+
+Passenger Bogies after addition:
+[Sleeper, AC Chair, First Class]
+
+After removing AC Chair:
+[Sleeper, First Class]
+
+Does Sleeper exist? true
+
+Final Passenger Bogie List:
+[Sleeper, First Class]
+
+System ready for further operations...
 ```
 
 ---
 
-## 🚀 Future Enhancements
+## 🚀 Key Learning Outcomes
 
-* Add Passenger Bogies (Sleeper, AC, First Class)
-* Add Goods Bogies (Rectangular, Cylindrical)
-* Track seat capacity and cargo types
-* Implement safety compliance checks
-* Interactive menu-driven system
+* Understand dynamic data structures
+* Perform CRUD operations using ArrayList
+* Learn how real-world systems manage collections
+* Visualize train bogie attachment/detachment
 
 ---
 
-## 💡 Purpose of the Project
+## 🔮 Future Scope
 
-This project builds a strong foundation in:
-
-* Data structures (dynamic collections)
-* Object-oriented programming
-* Real-world system modeling
-
-It serves as a base for extending into more complex railway management simulations.
+* Convert bogies into objects (OOP)
+* Add Goods Bogies
+* Track capacity and cargo
+* Build menu-driven system
+* Implement safety validation logic
 
 ---
 
 ## 📎 Notes
 
-* This is the foundational use case (UC1)
-* Further use cases will expand functionality progressively
+* This is **UC2**, building on UC1
+* Uses same file structure for version control across branches
 
 ---
 
-**Built as part of Java learning and system design practice.**
+**Built for practical Java learning and system design understanding.**
